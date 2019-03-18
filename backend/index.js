@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser());
 
-app.get('/', (req, res) => {
+app.get('*/api/', (req, res) => {
   const { day } = req.query;
   res.send(
     db
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   );
 });
 
-app.post('/add', (req, res) => {
+app.post('*/api/add', (req, res) => {
   const { todo } = req.body;
   const newTodo = {
     ...todo,
@@ -34,7 +34,7 @@ app.post('/add', (req, res) => {
   res.send({ ...newTodo });
 });
 
-app.post('/done', (req, res) => {
+app.post('*/api/done', (req, res) => {
   const { id } = req.body;
   // Get current value from DB
   const { done } = db

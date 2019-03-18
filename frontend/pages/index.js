@@ -11,7 +11,7 @@ const Home = withRouter(({ router: { query } }) => {
   const day = query.day || dayjs().format('DD.MM.YYYY');
 
   const onTodoAdd = async title => {
-    const { data } = await axios.post('http://localhost:5555/add', {
+    const { data } = await axios.post('http://localhost:5555/api/add', {
       todo: { title },
     });
     setList([...list, data]);
@@ -25,12 +25,12 @@ const Home = withRouter(({ router: { query } }) => {
         [index]: { ...list[index], done: !list[index].done },
       })
     );
-    axios.post('http://localhost:5555/done', { id });
+    axios.post('http://localhost:5555/api/done', { id });
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5555?day=${day}`)
+      .get(`http://localhost:5555/api?day=${day}`)
       .then(({ data }) => setList(data));
   }, [day]);
   return (
