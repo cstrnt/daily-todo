@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": "daily-todo",
   "builds": [
     {
       "src": "backend/index.js",

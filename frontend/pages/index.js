@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { withRouter } from 'next/router';
+import { get, post } from '../lib/helpers';
 import Todo from '../components/Todo';
 import AddTodo from '../components/AddTodo';
 import Pagination from '../components/Pagination';
@@ -11,7 +11,7 @@ const Home = withRouter(({ router: { query } }) => {
   const day = query.day || dayjs().format('DD.MM.YYYY');
 
   const onTodoAdd = async title => {
-    const { data } = await axios.post('http://localhost:5555/api/add', {
+    const { data } = await post('add', {
       todo: { title },
     });
     setList([...list, data]);
@@ -25,13 +25,11 @@ const Home = withRouter(({ router: { query } }) => {
         [index]: { ...list[index], done: !list[index].done },
       })
     );
-    axios.post('http://localhost:5555/api/done', { id });
+    post('done', { id });
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5555/api?day=${day}`)
-      .then(({ data }) => setList(data));
+    get(`api?day=${day}`).then(({ data }) => setList(data));
   }, [day]);
   return (
     <div>
