@@ -29,7 +29,7 @@ const Home = withRouter(({ router: { query } }) => {
   };
 
   useEffect(() => {
-    get(`api?day=${day}`).then(({ data }) => setList(data));
+    get(`?day=${day}`).then(({ data }) => setList(data));
   }, [day]);
   return (
     <div>
