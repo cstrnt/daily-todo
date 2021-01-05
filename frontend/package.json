@@ -9,7 +9,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "dayjs": "^1.8.10",
     "next": "^8.0.3",
     "prop-types": "^15.7.2",
